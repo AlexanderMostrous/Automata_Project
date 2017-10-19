@@ -17,6 +17,18 @@ public class State {
 		
 	}	
 	
+	/*
+	 * 
+	 * Receives a string which will be a single character.
+	 * It finds the state or states that this character
+	 * leads the automata to.
+	 * 
+	 * It returns the list with the state(s).
+	 * If the list is empty, it means that there is no next state
+	 * with the use of this specific character.
+	 * So it returns null instead.
+	 * 
+	 */
 	public ArrayList<State> getNextState(String newCharacter){
 		
 		ArrayList<State> nextStates = new ArrayList<State>();
