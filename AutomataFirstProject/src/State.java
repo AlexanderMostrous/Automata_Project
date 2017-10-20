@@ -13,8 +13,6 @@ public class State {
 		goToStates = new ArrayList<State>();
 		transitionSymbols = new ArrayList<String>();
 		this.isStarting = isStarting;
-		this.isFinal = isFinal;
-		
 	}	
 	
 	/*
