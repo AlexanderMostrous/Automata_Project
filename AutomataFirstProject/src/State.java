@@ -7,7 +7,7 @@ public class State {
 	private ArrayList<State> goToStates;
 	private ArrayList<String> transitionSymbols;
 	
-	public State(String stateName, boolean isStarting, boolean isFinal){
+	public State(String stateName, boolean isStarting){
 		
 		name = stateName;
 		goToStates = new ArrayList<State>();
