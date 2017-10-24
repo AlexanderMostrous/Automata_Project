@@ -2,21 +2,22 @@ import java.util.ArrayList;
 
 public class AutomataRunner {
 
-	private ArrayList<State> currentStates;
+	private ArrayList<State> currentStates, allStates;
 	
-	public AutomataRunner(){
+	public AutomataRunner(ArrayList<State> allStates){
 		
+		this.allStates=allStates;
 		currentStates = new ArrayList<State>();
 		currentStates.add(getStartingState());
 		
 	}
-	
 	
 	/*
 	 * 
 	 * This methods receives a symbol and simulates the automata transition based on it.
 	 * It returns true or false based on whether this symbol produces a transition or not.
 	 */
+	//TODO DEBUG 3
 	public boolean consumeNextCharacter(String symbol){
 		boolean isLegalTransition = true;
 		
@@ -26,6 +27,16 @@ public class AutomataRunner {
 		else
 			isLegalTransition = false;
 			
+		//TODO Remove those lines. For debug purpose only.
+		if(isLegalTransition)
+		{
+			System.out.println("It's a legal transition.");
+			for(State s:currentStates)
+				System.out.print(s.getName()+", ");
+		}
+		else
+			System.out.println("It's not a legal transition.");
+
 		return isLegalTransition;
 	}
 	
@@ -51,7 +62,7 @@ public class AutomataRunner {
 	 */
 	private State getStartingState(){
 		
-		for(State s:currentStates)
+		for(State s:allStates)
 			if(s.isStarting())
 				return s;
 		

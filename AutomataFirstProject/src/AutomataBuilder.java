@@ -17,6 +17,7 @@ public class AutomataBuilder {
 
 	}
 
+	//TODO DEBUG 2
 	private void createAutomata(){
 
 		int i = 0;
@@ -168,5 +169,9 @@ public class AutomataBuilder {
 		return textLines;
 	}
 
+	public ArrayList<State> getStates() {
+		return states;
+	}
 
+	
 }

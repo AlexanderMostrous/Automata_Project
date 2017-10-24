@@ -18,7 +18,6 @@ public class FormatTester {
 
 		this.filePath = filePath;
 		readTextFile();
-		System.out.println(isInCorrectFormat());
 	}
 
 	/*
