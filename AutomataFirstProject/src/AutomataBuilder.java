@@ -12,11 +12,12 @@ public class AutomataBuilder {
 	public AutomataBuilder(ArrayList<String> textLines){
 
 		this.textLines = textLines;
+		createAutomata();
 
 
 	}
 
-	public void createAutomata(){
+	private void createAutomata(){
 
 		int i = 0;
 		Pattern pattern;
