@@ -6,15 +6,15 @@ public class State {
 	private boolean isStarting;
 	private ArrayList<State> goToStates;
 	private ArrayList<String> transitionSymbols;
-	
+
 	public State(String stateName, boolean isStarting){
-		
+
 		name = stateName;
 		goToStates = new ArrayList<State>();
 		transitionSymbols = new ArrayList<String>();
 		this.isStarting = isStarting;
 	}	
-	
+
 	/*
 	 * 
 	 * Receives a string which will be a single character.
@@ -28,20 +28,18 @@ public class State {
 	 * 
 	 */
 	public ArrayList<State> getNextState(String newCharacter){
-		
+
 		ArrayList<State> nextStates = new ArrayList<State>();
-		
+
 		for(int i=0; i<transitionSymbols.size();i++)		
 			if(transitionSymbols.get(i).equals(newCharacter))			
 				nextStates.add(goToStates.get(i));
-		
-		if(!nextStates.isEmpty())
-			return nextStates;
-		else
-			return null;//If null, then the whole automata will eventually crush, due to wrong input.
+
+		return nextStates;
+
 	}
-	
-	
+
+
 	/*
 	 * 
 	 * goToStates list and transitionSymbols list are keeped aligned.
@@ -52,7 +50,7 @@ public class State {
 		addGoToState(state);
 		addTransitionSymbol(symbol);
 	}
-	
+
 	public ArrayList<State> getGoToStates() {
 		return goToStates;
 	}
@@ -83,9 +81,9 @@ public class State {
 	public void setStarting(boolean isStarting) {
 		this.isStarting = isStarting;
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 }
