@@ -7,14 +7,11 @@ public class State {
 	private String name;
 	private boolean isFinal;
 	private boolean isStarting;
-	private ArrayList<State> goToStates;
-	private ArrayList<String> transitionSymbols;
+	private ArrayList<Transition> transitions;
 
 	public State(String stateName, boolean isStarting){
 
 		name = stateName;
-		goToStates = new ArrayList<State>();
-		transitionSymbols = new ArrayList<String>();
 		this.isStarting = isStarting;
 	}	
 
@@ -31,12 +28,17 @@ public class State {
 
 		ArrayList<State> nextStates = new ArrayList<State>();
 
-		for(int i=0; i<transitionSymbols.size();i++)		
-			if(transitionSymbols.get(i).equals(newCharacter))			
-				nextStates.add(goToStates.get(i));
+		/*
+		 * Inspects all transitions. If the input character
+		 * is equal to the transition character, then this
+		 * destination State is added to the list.
+		 */
+		for(int i=0; i<this.transitions.size();i++)		
+			if(transitions.get(i).getTransitionSymbol().equals(newCharacter))			
+				nextStates.add(transitions.get(i).getDestinationState());
 
 		if(!nextStates.isEmpty())
-			nextStates.addAll(this.getMyStandardNextStates());
+			nextStates.addAll(this.getAllNextStatesBasedOnNullTransitions());
 
 		/*
 		 * remove duplicates
@@ -48,68 +50,32 @@ public class State {
 		
 		return nextStates;
 	}
+	
+	
+	public ArrayList<State> getAllNextStatesBasedOnNullTransitions()
+	{
+		ArrayList<State> states = new ArrayList<State>();
+		
+		
+		
+		return states;
+	}
 
 	/*
-	 * Description inside method.
-	 */
-	public ArrayList<State> getMyStandardNextStates()
-	{
-		ArrayList<State> nextStates = new ArrayList<State>();
-		
-		
-		/*
-		 * First we add in ArrayList<State> nextStates all next states
-		 * based on å transitions.
-		 * 
-		 */
-		for(int i=0;i<this.transitionSymbols.size();i++)
-			if(this.transitionSymbols.get(i).equals("å"))
-				nextStates.add(this.goToStates.get(i));
-		
-		int i=0;
-		/*
-		 * If ArrayList<State> nextStates is now empty, then the while loop will not
-		 * be executed once, because there are no å transitions.
-		 * Else the loop will execute by iterating throughout the whole list
-		 * while adding next states based on å transitions.
-		 * 
-		 */
-		while(i<nextStates.size())
-		{
-			for(int j=0;j<nextStates.get(i).transitionSymbols.size();j++)
-				if(nextStates.get(i).transitionSymbols.get(j).equals("å"))
-					if(!nextStates.contains(nextStates.get(i).goToStates.get(j)))
-						nextStates.add(nextStates.get(i).goToStates.get(j));
-			i++;
-		}
-		
-		return nextStates;
-		
-	}
-	
-	/*
 	 * 
-	 * goToStates list and transitionSymbols list are kept aligned.
-	 * Each one's i-th item is related with the other's. 
+	 * Creates a new Transition object
+	 * and adds it to the transition list. 
 	 */
 	public void addNewTransition(String symbol,State state)
 	{
-		addGoToState(state);
-		addTransitionSymbol(symbol);
+		Transition newTransition = new Transition(this, state, symbol);
+		this.transitions.add(newTransition);
 	}
 
-	public ArrayList<State> getGoToStates() {
-		return goToStates;
+	public ArrayList<Transition> getTransitions() {
+		return transitions;
 	}
-	private void addTransitionSymbol(String symbol){
-		this.transitionSymbols.add(symbol);
-	}
-	public ArrayList<String> getTransitionSymbols() {
-		return transitionSymbols;
-	}
-	private void addGoToState(State aState) {
-		this.goToStates.add(aState);
-	}
+
 	public String getName() {
 		return name;
 	}
