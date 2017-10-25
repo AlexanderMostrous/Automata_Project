@@ -13,7 +13,7 @@ public class AutomataBuilder {
 
 		this.textLines = textLines;
 		createAutomata();
-
+		printAutomata();
 
 	}
 
@@ -173,5 +173,31 @@ public class AutomataBuilder {
 		return states;
 	}
 
-	
+	//TODO For debug purposes.
+	public void printAutomata(){
+		
+		System.out.println("Number of States="+this.numberOfStates);
+		System.out.println("Number of Final States="+this.numberOfFinalStates);
+		System.out.println("Number of Transitions="+this.numberOfTransitions);
+		System.out.print("Created states are: ");
+		for(int i=0;i<states.size();i++)
+		{
+			System.out.print(""+states.get(i).getName());
+			if(i!=states.size()-1)
+				System.out.print(", ");
+		}
+		System.out.println();
+		for(int i=0;i<states.size();i++)
+		{
+			System.out.print("For state "+states.get(i).getName()+" transitions are: ");
+			for(int j=0;j<states.get(i).getTransitions().size();j++)
+			{
+				System.out.print(states.get(i).getTransitions().get(j).toString());
+				if(j!=states.get(i).getTransitions().size()-1)
+					System.out.print(" , ");
+			}
+			System.out.println();
+		}
+		
+	}
 }
