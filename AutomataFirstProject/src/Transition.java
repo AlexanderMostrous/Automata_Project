@@ -31,5 +31,8 @@ public class Transition {
 		return transitionSymbol;
 	}
 	
-	
+	public String toString(){
+		
+		return startingState + " " + transitionSymbol + " " + destinationState;
+	}
 }
