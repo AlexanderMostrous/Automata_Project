@@ -13,6 +13,7 @@ public class State {
 
 		name = stateName;
 		this.isStarting = isStarting;
+		transitions = new ArrayList<Transition>();
 	}	
 
 	/*
@@ -68,8 +69,7 @@ public class State {
 	 */
 	public void addNewTransition(String symbol,State state)
 	{
-		Transition newTransition = new Transition(this, state, symbol);
-		this.transitions.add(newTransition);
+		transitions.add(new Transition(this, state, symbol));
 	}
 
 	public ArrayList<Transition> getTransitions() {

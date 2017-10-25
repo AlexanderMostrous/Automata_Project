@@ -33,6 +33,6 @@ public class Transition {
 	
 	public String toString(){
 		
-		return startingState + " " + transitionSymbol + " " + destinationState;
+		return startingState.getName() + " " + transitionSymbol + " " + destinationState.getName();
 	}
 }
