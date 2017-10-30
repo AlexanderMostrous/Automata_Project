@@ -35,7 +35,7 @@ public class State {
 		 * destination State is added to the list.
 		 */
 		for(int i=0; i<this.transitions.size();i++)		
-			if(transitions.get(i).getTransitionSymbol().equals(newCharacter)||transitions.get(i).getTransitionSymbol().equals("å"))			
+			if(transitions.get(i).getTransitionSymbol().equals(newCharacter))			
 				nextStates.add(transitions.get(i).getDestinationState());
 
 		/*
@@ -49,6 +49,29 @@ public class State {
 		return nextStates;
 	}
 	
+	public ArrayList<State> getNextNulltrasitionState(){
+
+		ArrayList<State> nextStates = new ArrayList<State>();
+
+		/*
+		 * Inspects all transitions. If the input character
+		 * is equal to the transition character or the "å" character, then this
+		 * destination State is added to the list.
+		 */
+		for(int i=0; i<this.transitions.size();i++)		
+			if(transitions.get(i).getTransitionSymbol().equals("#"))			
+				nextStates.add(transitions.get(i).getDestinationState());
+
+		/*
+		 * remove duplicates
+		 */
+		Set<State> hs = new HashSet<>();
+		hs.addAll(nextStates);
+		nextStates.clear();
+		nextStates.addAll(hs);
+		
+		return nextStates;
+	}
 
 	/*
 	 * 

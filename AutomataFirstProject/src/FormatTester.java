@@ -79,7 +79,7 @@ public class FormatTester {
 		 * All transitions
 		 * The transition symbols, based on which, next state will be selected, are consisted strictly by a-z and 0-9 characters. NOT capitals.
 		 */
-		pattern = Pattern.compile("([0-9A-Za-z])+(\\s+)([0-9a-z])(\\s+)([0-9A-Za-z])+");
+		pattern = Pattern.compile("([0-9A-Za-z])+(\\s+)(([0-9a-z])|(#))(\\s+)([0-9A-Za-z])+");
 		while(i<textLines.size())
 		{
 			matcher = pattern.matcher(textLines.get(i));
