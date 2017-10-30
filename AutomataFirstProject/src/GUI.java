@@ -52,7 +52,6 @@ public class GUI extends JFrame implements ActionListener{
 
 		if(e.getActionCommand().equals("ok"))
 		{
-			//TODO DEBUG 1
 			myAR.consumeNextCharacter(tf.getText());
 			tf.setText("");
 		}
