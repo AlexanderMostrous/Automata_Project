@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class AutomataRunner {
 
@@ -24,13 +26,22 @@ public class AutomataRunner {
 
 		ArrayList<State> temp = getNextStates(symbol);
 		if(!temp.isEmpty())
+		{
 			currentStates = temp;
+			//Removing duplicates
+			Set<State> hs = new HashSet<>();
+			hs.addAll(currentStates);
+			currentStates.clear();
+			currentStates.addAll(hs);
+		}
 		else
 		{
 			System.out.println("List is empty.");
 			isLegalTransition = false;
 		}
 
+		
+		
 		//TODO Remove this line. For debug purpose only.
 		printIfLegal(isLegalTransition);
 
