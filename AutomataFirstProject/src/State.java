@@ -31,15 +31,12 @@ public class State {
 
 		/*
 		 * Inspects all transitions. If the input character
-		 * is equal to the transition character, then this
+		 * is equal to the transition character or the "å" character, then this
 		 * destination State is added to the list.
 		 */
 		for(int i=0; i<this.transitions.size();i++)		
-			if(transitions.get(i).getTransitionSymbol().equals(newCharacter))			
+			if(transitions.get(i).getTransitionSymbol().equals(newCharacter)||transitions.get(i).getTransitionSymbol().equals("å"))			
 				nextStates.add(transitions.get(i).getDestinationState());
-
-		if(!nextStates.isEmpty())
-			nextStates.addAll(this.getAllNextStatesBasedOnNullTransitions());
 
 		/*
 		 * remove duplicates
@@ -52,15 +49,6 @@ public class State {
 		return nextStates;
 	}
 	
-	
-	public ArrayList<State> getAllNextStatesBasedOnNullTransitions()
-	{
-		ArrayList<State> states = new ArrayList<State>();
-		
-		
-		
-		return states;
-	}
 
 	/*
 	 * 
