@@ -17,7 +17,6 @@ public class AutomataBuilder {
 
 	}
 
-	//TODO DEBUG 2
 	private void createAutomata(){
 
 		int i = 0;
@@ -81,7 +80,6 @@ public class AutomataBuilder {
 		 * All transitions
 		 * The transition symbols, based on which, next state will be selected, are consisted strictly by a-z and 0-9 characters. NOT capitals.
 		 */
-		pattern = Pattern.compile("([0-9A-Za-z])+(\\s+)([0-9a-z])(\\s+)([0-9A-Za-z])+");
 		String[] tempTransitions; 
 		while(i<textLines.size())
 		{
@@ -173,7 +171,7 @@ public class AutomataBuilder {
 		return states;
 	}
 
-	//TODO For debug purposes.
+	
 	public void printAutomata(){
 		
 		System.out.println("Number of States="+this.numberOfStates);
