@@ -20,7 +20,6 @@ public class AutomataRunner {
 	 * This methods receives a symbol and simulates the automata transition based on it.
 	 * It returns true or false based on whether this symbol produces a transition or not.
 	 */
-	//TODO DEBUG 3
 	public boolean consumeNextCharacter(String symbol){
 		boolean isLegalTransition = true;
 
@@ -39,10 +38,6 @@ public class AutomataRunner {
 			System.out.println("List is empty.");
 			isLegalTransition = false;
 		}
-
-		
-		
-		//TODO Remove this line. For debug purpose only.
 		printIfLegal(isLegalTransition);
 
 		return isLegalTransition;
@@ -57,11 +52,12 @@ public class AutomataRunner {
 				for(i=0; i<currentStates.size()-1;i++)
 					System.out.print(currentStates.get(i).getName()+", ");
 				System.out.print(currentStates.get(i).getName());
+				System.out.println();
 			}
 			else
 			{
 				System.out.println("It's a legal transition. The automata is currently on the below state:");
-				System.out.print(currentStates.get(0).getName());
+				System.out.println(currentStates.get(0).getName());
 			}	
 		}
 		else
@@ -69,8 +65,7 @@ public class AutomataRunner {
 	}
 
 	/*
-	 * For every state that is included in ArrayList<State> currentStates
-	 * searches the next states based on the transition that is produced by the input symbol.
+	 * 
 	 */
 	private ArrayList<State> getNextStates(String symbol){
 		ArrayList<State> newStates = new ArrayList<State>();
@@ -80,6 +75,17 @@ public class AutomataRunner {
 			newStates.addAll(s.getNextState(symbol));
 		}
 
+		for(int i=0;i<currentStates.size();i++)
+		{
+			//TODO Debug
+			currentStates.addAll(currentStates.get(i).getNextNulltrasitionState());
+			
+			//Removing duplicates
+			Set<State> hs = new HashSet<>();
+			hs.addAll(currentStates);
+			currentStates.clear();
+			currentStates.addAll(hs);
+		}
 		return newStates;
 	}
 
