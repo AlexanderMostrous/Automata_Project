@@ -11,9 +11,19 @@ public class AutomataRunner {
 		this.allStates=allStates;
 		currentStates = new ArrayList<State>();
 		State stst = getStartingState();
-		//TODO TO FIX! Exactly after starting state might be a null transition. This must be considered a possibility. 
-		currentStates.add(stst);
-		System.out.println("Starting state is: "+stst.getName());
+		ArrayList<State> startingStates = new ArrayList<>();
+		startingStates.add(stst);
+		/*
+		 * Besides the one starting state that is given as an input in the txt file,
+		 * it is probable that this state has null transitions to some other state(s).
+		 * So we need to take this into account.
+		 */
+		for(int i=0;i<startingStates.size();i++)
+			Utility.addAllWithoutDuplicates(startingStates,startingStates.get(i).getNextNulltrasitionState());
+
+		currentStates = startingStates;
+		
+		printStartingStates();
 	}
 
 	/*
@@ -24,15 +34,11 @@ public class AutomataRunner {
 	public boolean consumeNextCharacter(String symbol){
 		boolean isLegalTransition = true;
 
-		ArrayList<State> temp = getNextStates(symbol);
-		if(!temp.isEmpty())
+		ArrayList<State> newStates = getNextStates(currentStates,symbol);
+		
+		if(!newStates.isEmpty())
 		{
-			currentStates = temp;
-			//Removing duplicates
-			Set<State> hs = new HashSet<>();
-			hs.addAll(currentStates);
-			currentStates.clear();
-			currentStates.addAll(hs);
+			currentStates = newStates;
 		}
 		else
 		{
@@ -42,6 +48,19 @@ public class AutomataRunner {
 		printIfLegal(isLegalTransition);
 
 		return isLegalTransition;
+	}
+	
+	private void printStartingStates()
+	{
+		if(currentStates.size()==1)
+			System.out.println("Starting state is: "+currentStates.get(0).getName());
+		else
+		{
+			System.out.print("Starting states are: ");
+			for(int i=0;i<currentStates.size()-1;i++)
+				System.out.print(currentStates.get(i).getName()+", ");
+			System.out.println(currentStates.get(currentStates.size()-1).getName());
+		}
 	}
 	private void printIfLegal(boolean isLegalTransition){
 		if(isLegalTransition)
@@ -68,24 +87,19 @@ public class AutomataRunner {
 	/*
 	 * 
 	 */
-	private ArrayList<State> getNextStates(String symbol){
+	private ArrayList<State> getNextStates(ArrayList<State> beforeTransitionStates, String symbol){
 		ArrayList<State> newStates = new ArrayList<State>();
 
-		for(State s:currentStates)
+		for(State s : beforeTransitionStates)
 		{
-			newStates.addAll(s.getNextState(symbol));
+			Utility.addAllWithoutDuplicates(newStates, s.getNextState(symbol));
 		}
 
-		for(int i=0;i<currentStates.size();i++)
+		for(int i=0;i<newStates.size();i++)
 		{
-			//TODO Debug
-			currentStates.addAll(currentStates.get(i).getNextNulltrasitionState());
+			//TODO Debugged?
+			Utility.addAllWithoutDuplicates(newStates,newStates.get(i).getNextNulltrasitionState());
 			
-			//Removing duplicates
-			Set<State> hs = new HashSet<>();
-			hs.addAll(currentStates);
-			currentStates.clear();
-			currentStates.addAll(hs);
 		}
 		return newStates;
 	}

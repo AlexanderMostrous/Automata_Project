@@ -41,14 +41,14 @@ public class State {
 		/*
 		 * remove duplicates
 		 */
-		Set<State> hs = new HashSet<>();
-		hs.addAll(nextStates);
-		nextStates.clear();
-		nextStates.addAll(hs);
+		ArrayList<State> clearFromDuplicates = new ArrayList<>();
+		Utility.addAllWithoutDuplicates(clearFromDuplicates, nextStates);
+
 		
-		return nextStates;
+		return clearFromDuplicates;
 	}
 	
+	//TODO Fix name.
 	public ArrayList<State> getNextNulltrasitionState(){
 
 		ArrayList<State> nextStates = new ArrayList<State>();
@@ -65,12 +65,10 @@ public class State {
 		/*
 		 * remove duplicates
 		 */
-		Set<State> hs = new HashSet<>();
-		hs.addAll(nextStates);
-		nextStates.clear();
-		nextStates.addAll(hs);
+		ArrayList<State> clearFromDuplicates = new ArrayList<>();
+		Utility.addAllWithoutDuplicates(clearFromDuplicates, nextStates);
 		
-		return nextStates;
+		return clearFromDuplicates;
 	}
 
 	/*
