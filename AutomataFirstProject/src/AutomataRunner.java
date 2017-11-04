@@ -19,7 +19,7 @@ public class AutomataRunner {
 		 * So we need to take this into account.
 		 */
 		for(int i=0;i<startingStates.size();i++)
-			Utility.addAllWithoutDuplicates(startingStates,startingStates.get(i).getNextNulltrasitionState());
+			Utility.addAllWithoutDuplicates(startingStates,startingStates.get(i).getNextNullTransitionState());
 
 		currentStates = startingStates;
 		
@@ -98,7 +98,7 @@ public class AutomataRunner {
 		for(int i=0;i<newStates.size();i++)
 		{
 			//TODO Debugged?
-			Utility.addAllWithoutDuplicates(newStates,newStates.get(i).getNextNulltrasitionState());
+			Utility.addAllWithoutDuplicates(newStates,newStates.get(i).getNextNullTransitionState());
 			
 		}
 		return newStates;

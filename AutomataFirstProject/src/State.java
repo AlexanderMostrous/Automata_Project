@@ -49,7 +49,7 @@ public class State {
 	}
 	
 	//TODO Fix name.
-	public ArrayList<State> getNextNulltrasitionState(){
+	public ArrayList<State> getNextNullTransitionState(){
 
 		ArrayList<State> nextStates = new ArrayList<State>();
 
