@@ -48,7 +48,6 @@ public class State {
 		return clearFromDuplicates;
 	}
 	
-	//TODO Fix name.
 	public ArrayList<State> getNextNullTransitionState(){
 
 		ArrayList<State> nextStates = new ArrayList<State>();
