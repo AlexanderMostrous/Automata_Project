@@ -2,10 +2,10 @@ import java.util.ArrayList;
 
 public class Utility {
 
-	public static void addAllWithoutDuplicates(ArrayList<Object> target, ArrayList<Object> source)
+	public static void addAllWithoutDuplicates(ArrayList<State> target, ArrayList<State> source)
 	{
-		for(Object o: source)
-			if(!target.contains(o))
-				target.add(o);
+		for(State s: source)
+			if(!target.contains(s))
+				target.add(s);
 	}
 }
