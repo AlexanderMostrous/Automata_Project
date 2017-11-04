@@ -11,6 +11,7 @@ public class AutomataRunner {
 		this.allStates=allStates;
 		currentStates = new ArrayList<State>();
 		State stst = getStartingState();
+		//TODO TO FIX! Exactly after starting state might be a null transition. This must be considered a possibility. 
 		currentStates.add(stst);
 		System.out.println("Starting state is: "+stst.getName());
 	}
