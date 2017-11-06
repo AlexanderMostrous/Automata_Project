@@ -104,10 +104,14 @@ public class FormatTester {
 		{
 			BufferedReader in = new BufferedReader(new FileReader(filePath));
 			String line;
+			Pattern pattern;
+			Matcher matcher;
 			while((line = in.readLine()) != null)
 			{
-				//TODO Add a full-blank-space-line cleaner.
-				textLines.add(line.trim());
+				pattern = Pattern.compile("\\s*");
+				matcher = pattern.matcher(line);
+				if(!matcher.matches())				
+					textLines.add(line.trim());
 			}
 			in.close();
 		} 
