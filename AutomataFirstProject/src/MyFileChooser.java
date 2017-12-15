@@ -15,20 +15,27 @@ public class MyFileChooser extends JFrame {
 
 
 		//Create a file chooser
-		JFileChooser fc = new JFileChooser();
+		//TODO Remember to Remove-Helpful Starting Path for Debugging
+		JFileChooser fc = new JFileChooser("C:\\Users\\alexandros\\Dropbox\\Xeimerino\\Computing and Automata Theory");
 		//In response to a button click:
 		int returnVal;
-
+		
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
 		fc.setFileFilter(filter);
 		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		int counter = 3;
 		do
 		{
 			returnVal = fc.showOpenDialog(null);
+			counter--;
 			
-		}while(returnVal != JFileChooser.APPROVE_OPTION);
+		}//counter is there for not being annoying.
+		while(returnVal != JFileChooser.APPROVE_OPTION && counter>0);
 		
-		directory = fc.getSelectedFile().getAbsolutePath();	
+		if(counter != 0)
+			directory = fc.getSelectedFile().getAbsolutePath();	
+		else
+			directory = "END";
 	}
 
 	public String getDirectory()
