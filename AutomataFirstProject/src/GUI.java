@@ -17,7 +17,7 @@ import javax.swing.JTextField;
 public class GUI extends JFrame implements ActionListener, KeyListener{
 
 	
-	private JButton btn = new JButton("ok");
+	private JButton okBtn = new JButton("ok"), endBtn = new JButton("End");
 	private JTextField tf = new JTextField("");
 	private AutomataRunner myAR;
 	
@@ -33,19 +33,24 @@ public class GUI extends JFrame implements ActionListener, KeyListener{
 		gbc.gridy = 0;
 		
 		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridwidth = 2;
 		panel.add(tf, gbc);
-		gbc.gridy = 1;
-		panel.add(btn,gbc);
+		gbc.gridy++;
+		gbc.gridwidth = 1;
+		panel.add(okBtn,gbc);
+		
+		gbc.gridx++;
+		panel.add(endBtn,gbc);
 
 		
-		btn.addActionListener(this);
-		btn.addKeyListener(this);
+		okBtn.addActionListener(this);
+		okBtn.addKeyListener(this);
 		
 		
 		this.setContentPane(panel);
 		//The next 2 lines of code makes the OK button focused from the beginning.
-		this.getRootPane().setDefaultButton(btn);
-		btn.requestFocusInWindow();
+		this.getRootPane().setDefaultButton(okBtn);
+		okBtn.requestFocusInWindow();
 		
 		this.pack();
 		this.setVisible(true);		
@@ -58,11 +63,18 @@ public class GUI extends JFrame implements ActionListener, KeyListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-
 		if(e.getActionCommand().equals("ok"))
 		{
-			myAR.consumeNextCharacter(tf.getText());
-			tf.setText("");
+			if(!myAR.consumeNextCharacter(tf.getText()))
+				tf.setText("");
+			else
+			{
+				new EndingMechanism("crash",this);
+			}
+		}
+		else if(e.getActionCommand().equals("End"))
+		{
+			new EndingMechanism("terminated",this, myAR);	
 		}
 		
 	}
@@ -72,10 +84,9 @@ public class GUI extends JFrame implements ActionListener, KeyListener{
 	}
 	@Override
 	public void keyReleased(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_ENTER)
+		if(e.getSource().equals(okBtn) && e.getKeyCode() == KeyEvent.VK_ENTER)
 		{
-			myAR.consumeNextCharacter(tf.getText());
-			tf.setText("");
+			okBtn.doClick();
 		}
 		
 	}
