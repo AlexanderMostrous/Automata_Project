@@ -114,7 +114,35 @@ public class AutomataRunner {
 		for(State s:allStates)
 			if(s.isStarting())
 				return s;
-
 		return null;
+	}
+	
+	/*
+	 * 
+	 * This method searches all currentStates and 
+	 * returns TRUE if at least ONE of them is a final state
+	 * and FALSE if ALL of them are NOT final states.
+	 * 
+	 */
+	public boolean postTerminationInputEvaluation_isValid()
+	{
+		for(State s:currentStates)
+			if(s.isFinal())
+				return true;
+		return false;
+	}
+	
+	/*
+	 * 
+	 * Searches and returns all final states in an ArrayList.
+	 * 
+	 */
+	
+	public ArrayList<State> getFinalStates(){
+		ArrayList<State> temp = new ArrayList<State>();
+		for(State s:currentStates)
+			if(s.isFinal())
+				temp.add(s);
+		return temp;
 	}
 }
