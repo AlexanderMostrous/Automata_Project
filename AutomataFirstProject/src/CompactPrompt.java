@@ -14,7 +14,9 @@ public class CompactPrompt extends JFrame implements ActionListener{
 	private JLabel lbl = new JLabel("Wrong txt file Format!!");
 	private JButton btn = new JButton("OK");
 	
-	
+	/*
+	 * This class prompts a JFrame in case that the input txt file is wrong.
+	 */
 	public CompactPrompt(){
 		
 		JPanel panel = new JPanel();
