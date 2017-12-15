@@ -4,6 +4,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -12,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class GUI extends JFrame implements ActionListener{
+public class GUI extends JFrame implements ActionListener, KeyListener{
 
 	
 	private JButton btn = new JButton("ok");
@@ -37,13 +39,20 @@ public class GUI extends JFrame implements ActionListener{
 
 		
 		btn.addActionListener(this);
+		btn.addKeyListener(this);
+		
 		
 		this.setContentPane(panel);
+		//The next 2 lines of code makes the OK button focused from the beginning.
+		this.getRootPane().setDefaultButton(btn);
+		btn.requestFocusInWindow();
+		
 		this.pack();
-		this.setVisible(true);
+		this.setVisible(true);		
+		this.setSize(450, 200);
+		this.setResizable(true);
 		this.setLocationRelativeTo(null);
-		this.setResizable(false);
-		this.setTitle("Method Input?");
+		this.setTitle("Input Characters 1 by 1 and press OK ");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	@Override
@@ -55,6 +64,23 @@ public class GUI extends JFrame implements ActionListener{
 			myAR.consumeNextCharacter(tf.getText());
 			tf.setText("");
 		}
+		
+	}
+	@Override
+	public void keyPressed(KeyEvent e) {
+		
+	}
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_ENTER)
+		{
+			myAR.consumeNextCharacter(tf.getText());
+			tf.setText("");
+		}
+		
+	}
+	@Override
+	public void keyTyped(KeyEvent e) {
 		
 	}
 }
