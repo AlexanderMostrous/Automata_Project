@@ -6,11 +6,22 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 
+				
+		MyFileChooser fc = new MyFileChooser();
 		
-		
-		String path = "C:\\Users\\alexandros\\Dropbox\\Χειμερινό\\Θεωρία Υπολογισμών και Αυτομάτων\\module.txt";
-		
-		new FormatTester(path);
+		if(!fc.getDirectory().equals("END"))
+		{
+			FormatTester ft = new FormatTester(fc.getDirectory());
+			if(ft.isInCorrectFormat())
+			{
+				AutomataBuilder ab = new AutomataBuilder(ft.getTextLines());
+				new GUI(ab.getStates());
+			}
+			else
+				System.out.println("Wrong Format");
+		}
+		else
+			System.out.println("System ended by user before start.");
 	}
 
 }
