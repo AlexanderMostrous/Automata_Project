@@ -93,6 +93,8 @@ public class EndingMechanism extends JFrame implements ActionListener{
 					this.resultMessage2.setText(this.resultMessage2.getText()+" Final states are: ");
 					for(int i=0;i<ar.getFinalStates().size()-1;i++)
 						this.resultMessage2.setText(this.resultMessage2.getText()+ar.getFinalStates().get(i).getName()+", ");
+					
+					//TODO Some heavy bug that needs debugging. Breaks down when "End" button is clicked.
 					this.resultMessage2.setText(this.resultMessage2.getText()+ar.getFinalStates().get(ar.getFinalStates().size()).getName()+".");
 				}
 			}
