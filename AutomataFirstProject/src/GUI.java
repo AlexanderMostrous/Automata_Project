@@ -45,7 +45,7 @@ public class GUI extends JFrame implements ActionListener, KeyListener{
 		
 		okBtn.addActionListener(this);
 		okBtn.addKeyListener(this);
-		
+		endBtn.addActionListener(this);
 		
 		this.setContentPane(panel);
 		//The next 2 lines of code makes the OK button focused from the beginning.
@@ -65,31 +65,31 @@ public class GUI extends JFrame implements ActionListener, KeyListener{
 
 		if(e.getActionCommand().equals("ok"))
 		{
-			if(!myAR.consumeNextCharacter(tf.getText()))
+			if(myAR.consumeNextCharacter(tf.getText()))
 				tf.setText("");
-			else
-			{
+			else			
 				new EndingMechanism("crash",this);
-			}
+				
+			
 		}
-		else if(e.getActionCommand().equals("End"))
-		{
+		else if(e.getActionCommand().equals("End"))		
 			new EndingMechanism("terminated",this, myAR);	
-		}
+			
+		
 		
 	}
+	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		
 	}
+	
 	@Override
 	public void keyReleased(KeyEvent e) {
-		if(e.getSource().equals(okBtn) && e.getKeyCode() == KeyEvent.VK_ENTER)
-		{
+		if(e.getSource().equals(okBtn) && e.getKeyCode() == KeyEvent.VK_ENTER)		
 			okBtn.doClick();
-		}
-		
 	}
+	
 	@Override
 	public void keyTyped(KeyEvent e) {
 		
