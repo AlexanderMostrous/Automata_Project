@@ -8,13 +8,11 @@ public class AutomataBuilder {
 	private int numberOfStates,numberOfFinalStates,numberOfTransitions;
 	private ArrayList<State> states = new ArrayList<State>();
 
-
 	public AutomataBuilder(ArrayList<String> textLines){
 
 		this.textLines = textLines;
 		createAutomata();
 		printAutomata();
-
 	}
 
 	private void createAutomata(){
@@ -104,7 +102,7 @@ public class AutomataBuilder {
 	{
 		String stateA_name = transitions[0],transitionSymbol = transitions[1],stateB_name = transitions[2];
 		State stateA = null, stateB = null;
-		boolean bFound = false,aFound = false;
+		boolean bFound = false, aFound = false;
 		
 		for(int i=0;i<states.size();i++)
 			if(states.get(i).getName().equals(stateA_name))
@@ -134,9 +132,7 @@ public class AutomataBuilder {
 			states.add(stateB);
 		}
 		
-		
 		stateA.addNewTransition(transitionSymbol, stateB);
-		
 	}
 	
 	/*
@@ -171,7 +167,6 @@ public class AutomataBuilder {
 		return states;
 	}
 
-	
 	public void printAutomata(){
 		
 		LogRecord.addLine("Number of States="+this.numberOfStates);
@@ -198,6 +193,5 @@ public class AutomataBuilder {
 			}
 			LogRecord.addLine(temp);
 		}
-		
 	}
 }

@@ -1,6 +1,4 @@
 import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Main {
 
@@ -23,5 +21,4 @@ public class Main {
 		else
 			System.out.println("System ended by user before start.");
 	}
-
 }

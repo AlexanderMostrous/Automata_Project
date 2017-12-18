@@ -1,4 +1,3 @@
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -10,7 +9,6 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -42,7 +40,6 @@ public class GUI extends JFrame implements ActionListener, KeyListener{
 		gbc.gridx++;
 		panel.add(endBtn,gbc);
 
-		
 		okBtn.addActionListener(this);
 		okBtn.addKeyListener(this);
 		endBtn.addActionListener(this);
@@ -69,14 +66,9 @@ public class GUI extends JFrame implements ActionListener, KeyListener{
 				tf.setText("");
 			else			
 				new EndingMechanism("crash",this);
-				
-			
 		}
 		else if(e.getActionCommand().equals("End"))		
-			new EndingMechanism("terminated",this, myAR);	
-			
-		
-		
+			new EndingMechanism("terminated",this, myAR);		
 	}
 	
 	@Override
@@ -89,7 +81,6 @@ public class GUI extends JFrame implements ActionListener, KeyListener{
 		if(e.getSource().equals(okBtn) && e.getKeyCode() == KeyEvent.VK_ENTER)		
 			okBtn.doClick();
 	}
-	
 	@Override
 	public void keyTyped(KeyEvent e) {
 		

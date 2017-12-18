@@ -61,7 +61,6 @@ public class EndingMechanism extends JFrame implements ActionListener{
 		yesBtn.addActionListener(this);
 		noBtn.addActionListener(this);
 		
-		
 		this.setContentPane(panel);		
 		this.pack();
 		this.setVisible(true);		
@@ -93,8 +92,6 @@ public class EndingMechanism extends JFrame implements ActionListener{
 					this.resultMessage2.setText(this.resultMessage2.getText()+" Final states are: ");
 					for(int i=0;i<ar.getFinalStates().size()-1;i++)
 						this.resultMessage2.setText(this.resultMessage2.getText()+ar.getFinalStates().get(i).getName()+", ");
-					
-					
 					this.resultMessage2.setText(this.resultMessage2.getText()+ar.getFinalStates().get(ar.getFinalStates().size()-1).getName()+".");
 				}
 			}

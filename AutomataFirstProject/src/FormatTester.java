@@ -88,7 +88,6 @@ public class FormatTester {
 			matcher.reset();
 			i++;
 		}
-
 		return true;
 	}
 
@@ -118,11 +117,9 @@ public class FormatTester {
 		catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public ArrayList<String> getTextLines() {
 		return textLines;
 	}
-
 }

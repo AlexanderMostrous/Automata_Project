@@ -1,10 +1,5 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class MyFileChooser extends JFrame {
@@ -15,9 +10,7 @@ public class MyFileChooser extends JFrame {
 
 
 		//Create a file chooser
-		//TODO Remember to Remove-Helpful Starting Path for Debugging
-		JFileChooser fc = new JFileChooser("C:\\Users\\alexandros\\Dropbox\\Xeimerino\\Computing and Automata Theory");
-		//In response to a button click:
+		JFileChooser fc = new JFileChooser();
 		int returnVal;
 		
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
@@ -42,6 +35,4 @@ public class MyFileChooser extends JFrame {
 	{
 		return directory;
 	}
-
-
 }

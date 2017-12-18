@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 public class AutomataRunner {
 
@@ -136,7 +134,6 @@ public class AutomataRunner {
 	 * Searches and returns all final states in an ArrayList.
 	 * 
 	 */
-	
 	public ArrayList<State> getFinalStates(){
 		ArrayList<State> temp = new ArrayList<State>();
 		for(State s:currentStates)

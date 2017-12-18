@@ -10,10 +10,9 @@ public class LogFileChooser {
 
 	public LogFileChooser(EndingMechanism caller){
 
-		caller.dispose();
+		caller.dispose();//Destruction of caller frame.
 
-		//TODO remember to remove the path below
-		final JFileChooser fc = new JFileChooser("C:\\Users\\alexandros\\Dropbox\\Xeimerino\\Computing and Automata Theory");
+		final JFileChooser fc = new JFileChooser();
 		
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
 		fc.setFileFilter(filter);
@@ -23,7 +22,6 @@ public class LogFileChooser {
 		{
 			returnVal = fc.showSaveDialog(null);
 			counter--;
-			
 		}//counter is there for not being annoying.
 		while(returnVal != JFileChooser.APPROVE_OPTION && counter>0);
 		

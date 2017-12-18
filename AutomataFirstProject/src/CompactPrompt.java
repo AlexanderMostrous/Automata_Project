@@ -32,7 +32,6 @@ public class CompactPrompt extends JFrame implements ActionListener{
 		gbc.gridy = 1;
 		panel.add(btn,gbc);
 
-		
 		btn.addActionListener(this);
 		
 		this.setContentPane(panel);
@@ -42,13 +41,10 @@ public class CompactPrompt extends JFrame implements ActionListener{
 		this.setResizable(false);
 		this.setTitle("Wrong Format Prompt Window");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 	}
-
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
 		if(e.getSource().equals(btn))
 			this.dispose();
 	}
