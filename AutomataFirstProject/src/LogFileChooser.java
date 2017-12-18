@@ -4,17 +4,19 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class LogFileChooser {
 
-	private String directory;
+	public LogFileChooser(EndingMechanism caller){
 
-	public LogFileChooser(){
+		caller.dispose();
 
-
-
-		final JFileChooser fc = new JFileChooser();
-		 //parent component to JFileChooser
+		//TODO remember to remove the path below
+		final JFileChooser fc = new JFileChooser("C:\\Users\\alexandros\\Dropbox\\Xeimerino\\Computing and Automata Theory");
+		
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
+		fc.setFileFilter(filter);
 		
 		int counter=3, returnVal;
 		do
@@ -28,10 +30,12 @@ public class LogFileChooser {
 		//TODO Need to complete this JFileChooser.
 		if (counter>0) {
 			File file = fc.getSelectedFile(); //get File selected by user
-			
+			BufferedWriter txtOutput;
 			try 
 			{
-				BufferedWriter o = new BufferedWriter(new FileWriter(file));
+				txtOutput = new BufferedWriter(new FileWriter(file));
+				for(String line:LogRecord.getLogRecord())
+					txtOutput.write(line);
 			} 
 			catch (IOException e) 
 			{
