@@ -105,13 +105,9 @@ public class EndingMechanism extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
-		if(e.getSource().equals(yesBtn))
-		{
-			//TODO Handle this
-		}
+		if(e.getSource().equals(yesBtn))		
+			new LogFileChooser(this);		
 		else if(e.getSource().equals(noBtn))
-			this.dispose();
-			
+			this.dispose();			
 	}
 }
