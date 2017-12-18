@@ -36,15 +36,11 @@ public class AutomataRunner {
 
 		ArrayList<State> newStates = getNextStates(currentStates,symbol);
 		
-		if(!newStates.isEmpty())
-		{
+		if(!newStates.isEmpty())		
 			currentStates = newStates;
-		}
-		else
-		{
-			System.out.println("List is empty.");
+		else		
 			isLegalTransition = false;
-		}
+		
 		printIfLegal(isLegalTransition);
 
 		return isLegalTransition;
@@ -52,36 +48,44 @@ public class AutomataRunner {
 	
 	private void printStartingStates()
 	{
+		String temp ="";
 		if(currentStates.size()==1)
-			System.out.println("Starting state is: "+currentStates.get(0).getName());
+			temp = "Starting state is: "+currentStates.get(0).getName();
 		else
 		{
-			System.out.print("Starting states are: ");
+			temp = "Starting states are: ";
 			for(int i=0;i<currentStates.size()-1;i++)
-				System.out.print(currentStates.get(i).getName()+", ");
-			System.out.println(currentStates.get(currentStates.size()-1).getName());
+				temp += currentStates.get(i).getName()+", ";
+			temp += currentStates.get(currentStates.size()-1).getName();
 		}
+		LogRecord.addLine(temp);
 	}
 	private void printIfLegal(boolean isLegalTransition){
+		String temp ="";
 		if(isLegalTransition)
 		{
 			if(currentStates.size()>1)
 			{
-				System.out.println("It's a legal transition. The automata is currently on the below states:");
+				temp = "It's a legal transition. The automata is currently on the below states:";
+				LogRecord.addLine(temp);
+				temp = "";
 				int i;
 				for(i=0; i<currentStates.size()-1;i++)
-					System.out.print(currentStates.get(i).getName()+", ");
-				System.out.print(currentStates.get(i).getName());
-				System.out.println();
+					temp += currentStates.get(i).getName()+", ";
+				temp += currentStates.get(i).getName();
+				LogRecord.addLine(temp);
 			}
 			else
 			{
-				System.out.println("It's a legal transition. The automata is currently on the below state:");
-				System.out.println(currentStates.get(0).getName());
+				LogRecord.addLine("It's a legal transition. The automata is currently on the below state:");
+				LogRecord.addLine(currentStates.get(0).getName());
 			}	
 		}
 		else
-			System.out.println("It's not a legal transition.");
+		{
+			LogRecord.addLine("It's not a legal transition.");
+			LogRecord.addLine("Automata crashed.");
+		}
 	}
 
 	/*
@@ -90,17 +94,12 @@ public class AutomataRunner {
 	private ArrayList<State> getNextStates(ArrayList<State> beforeTransitionStates, String symbol){
 		ArrayList<State> newStates = new ArrayList<State>();
 
-		for(State s : beforeTransitionStates)
-		{
-			Utility.addAllWithoutDuplicates(newStates, s.getNextState(symbol));
-		}
+		for(State s : beforeTransitionStates)		
+			Utility.addAllWithoutDuplicates(newStates, s.getNextState(symbol));		
 
 		for(int i=0;i<newStates.size();i++)
-		{
-			//TODO Debugged?
 			Utility.addAllWithoutDuplicates(newStates,newStates.get(i).getNextNullTransitionState());
 			
-		}
 		return newStates;
 	}
 

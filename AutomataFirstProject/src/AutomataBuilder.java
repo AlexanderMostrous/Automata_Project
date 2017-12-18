@@ -174,27 +174,29 @@ public class AutomataBuilder {
 	
 	public void printAutomata(){
 		
-		System.out.println("Number of States="+this.numberOfStates);
-		System.out.println("Number of Final States="+this.numberOfFinalStates);
-		System.out.println("Number of Transitions="+this.numberOfTransitions);
-		System.out.print("Created states are: ");
+		LogRecord.addLine("Number of States="+this.numberOfStates);
+		LogRecord.addLine("Number of Final States="+this.numberOfFinalStates);
+		LogRecord.addLine("Number of Transitions="+this.numberOfTransitions);
+		
+		String temp = "Created states are: ";		
 		for(int i=0;i<states.size();i++)
 		{
-			System.out.print(""+states.get(i).getName());
+			temp += ""+states.get(i).getName();
 			if(i!=states.size()-1)
-				System.out.print(", ");
+				temp += ", ";
 		}
-		System.out.println();
+		LogRecord.addLine(temp);
+		temp="";
 		for(int i=0;i<states.size();i++)
 		{
-			System.out.print("For state "+states.get(i).getName()+" transitions are: ");
+			temp = ("For state "+states.get(i).getName()+" transitions are: ");
 			for(int j=0;j<states.get(i).getTransitions().size();j++)
 			{
-				System.out.print(states.get(i).getTransitions().get(j).toString());
+				temp += (states.get(i).getTransitions().get(j).toString());
 				if(j!=states.get(i).getTransitions().size()-1)
-					System.out.print(" , ");
+					temp += (" , ");
 			}
-			System.out.println();
+			LogRecord.addLine(temp);
 		}
 		
 	}

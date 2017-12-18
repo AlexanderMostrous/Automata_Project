@@ -27,7 +27,6 @@ public class LogFileChooser {
 		}//counter is there for not being annoying.
 		while(returnVal != JFileChooser.APPROVE_OPTION && counter>0);
 		
-		
 		if (counter>0) {
 			File file = fc.getSelectedFile(); //get File selected by user
 			BufferedWriter txtOutput;
@@ -35,7 +34,11 @@ public class LogFileChooser {
 			{
 				txtOutput = new BufferedWriter(new FileWriter(file));
 				for(String line:LogRecord.getLogRecord())
+				{
 					txtOutput.write(line);
+					txtOutput.newLine();
+				}
+				txtOutput.close();
 			} 
 			catch (IOException e) 
 			{
