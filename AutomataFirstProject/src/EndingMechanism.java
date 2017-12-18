@@ -81,7 +81,7 @@ public class EndingMechanism extends JFrame implements ActionListener{
 		else
 		{
 			this.resultMessage1 = new JLabel("Your automata terminated by user.");
-			if(ar.postTerminationInputEvaluation_isValid())
+			if(!ar.postTerminationInputEvaluation_isValid())
 				this.resultMessage2 = new JLabel("Your input is not a valid string because it didnt terminate on a final state.");
 			else
 			{
@@ -94,8 +94,8 @@ public class EndingMechanism extends JFrame implements ActionListener{
 					for(int i=0;i<ar.getFinalStates().size()-1;i++)
 						this.resultMessage2.setText(this.resultMessage2.getText()+ar.getFinalStates().get(i).getName()+", ");
 					
-					//TODO Some heavy bug that needs debugging. Breaks down when "End" button is clicked.
-					this.resultMessage2.setText(this.resultMessage2.getText()+ar.getFinalStates().get(ar.getFinalStates().size()).getName()+".");
+					
+					this.resultMessage2.setText(this.resultMessage2.getText()+ar.getFinalStates().get(ar.getFinalStates().size()-1).getName()+".");
 				}
 			}
 		}
