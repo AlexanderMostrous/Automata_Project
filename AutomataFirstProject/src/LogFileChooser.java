@@ -27,7 +27,7 @@ public class LogFileChooser {
 		}//counter is there for not being annoying.
 		while(returnVal != JFileChooser.APPROVE_OPTION && counter>0);
 		
-		//TODO Need to complete this JFileChooser.
+		
 		if (counter>0) {
 			File file = fc.getSelectedFile(); //get File selected by user
 			BufferedWriter txtOutput;
