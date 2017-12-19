@@ -16,7 +16,7 @@ public class Main {
 				new GUI(ab.getStates());
 			}
 			else
-				System.out.println("Wrong Format");
+				new CompactPrompt();
 		}
 		else
 			System.out.println("System ended by user before start.");
